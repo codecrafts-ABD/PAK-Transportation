@@ -1,0 +1,27 @@
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(18px);
+}
+
+[data-reveal].is-visible {
+  animation: fadeUp 700ms ease forwards;
+}
+
+.site-header,
+.site-footer,
+.hero,
+.page-hero,
+.section {
+  animation: fadeUp 700ms ease both;
+}

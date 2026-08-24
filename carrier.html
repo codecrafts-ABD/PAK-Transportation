@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Register as a Carrier | Business Name</title>
+  <meta name="description" content="Join Business Name's carrier network and access consistent freight opportunities with a professional brokerage team.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body data-page="carrier">
+  <a class="sr-only" href="#main-content">Skip to content</a>
+  <div data-site-header></div>
+
+  <main id="main-content">
+    <section class="page-hero">
+      <div class="container page-hero__inner">
+        <div data-reveal>
+          <span class="hero__eyebrow">Carrier Network</span>
+          <h1 class="page-hero__title">Register as a Carrier</h1>
+          <p class="page-hero__subtitle">
+            Join our growing network of reliable transportation professionals and get access to consistent freight opportunities.
+          </p>
+        </div>
+        <div class="page-hero__panel" data-reveal>
+          <img src="https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?auto=format&fit=crop&w=1200&q=80" alt="Commercial trucks lined up at a logistics yard" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container two-column">
+        <div class="form-panel" data-reveal>
+          <span class="section__eyebrow">Carrier registration</span>
+          <h2 class="section__title">Submit your carrier information</h2>
+          <p class="section__lead">
+            Upload the requested documents so our carrier team can review your profile quickly and accurately.
+          </p>
+
+          <form data-registration-form novalidate>
+            <div class="form-grid">
+              <div class="form-field">
+                <label for="carrier-first-name">First Name</label>
+                <input id="carrier-first-name" name="first_name" type="text" autocomplete="given-name" required>
+              </div>
+              <div class="form-field">
+                <label for="carrier-last-name">Last Name</label>
+                <input id="carrier-last-name" name="last_name" type="text" autocomplete="family-name" required>
+              </div>
+              <div class="form-field">
+                <label for="carrier-phone">Phone Number</label>
+                <input id="carrier-phone" name="phone" type="tel" autocomplete="tel" required>
+              </div>
+              <div class="form-field">
+                <label for="carrier-email">Email</label>
+                <input id="carrier-email" name="email" type="email" autocomplete="email" required>
+              </div>
+              <div class="form-field form-field--full">
+                <label for="vin-number">VIN Number</label>
+                <input id="vin-number" name="vin_number" type="text" placeholder="e.g. 1HGBH41JXMN109186" required>
+              </div>
+              <div class="form-field form-field--full">
+                <label for="truck-type">Truck / Equipment Type</label>
+                <input id="truck-type" name="truck_type" type="text" placeholder="e.g. 53ft Dry Van, Flatbed, Reefer" required>
+              </div>
+              <div class="form-field form-field--full">
+                <label for="mc-dot">MC / DOT Number</label>
+                <input id="mc-dot" name="mc_dot" type="text" placeholder="e.g. MC-123456 / DOT-7654321">
+              </div>
+              <div class="form-field form-field--full">
+                <label for="additional-notes">Additional Notes</label>
+                <textarea id="additional-notes" name="additional_notes" rows="3" placeholder="Any other details you'd like to share (operating states, availability, etc.)"></textarea>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button class="button button--accent" type="submit">Submit Registration</button>
+            </div>
+            <p class="upload-help">After submitting, our carrier team will reach out to collect your documents (license, VIN photo, voided check, and vehicle photos) via email.</p>
+            <div class="form-message" data-form-message aria-live="polite"></div>
+          </form>
+        </div>
+
+        <aside class="info-stack">
+          <article class="info-card" data-reveal>
+            <h3>What we look for</h3>
+            <p>Safe operations, accurate documentation, clear communication, and dependable equipment that supports on-time freight.</p>
+          </article>
+          <article class="info-card" data-reveal>
+            <h3>Carrier support</h3>
+            <p>We help with onboarding, dispatch expectations, compliance details, and a clear path to consistent freight opportunities.</p>
+          </article>
+          <article class="info-card" data-reveal>
+            <h3>Fast review process</h3>
+            <p>Our team reviews submissions promptly so qualified carriers can move toward active freight faster.</p>
+          </article>
+          <article class="info-card" data-reveal>
+            <h3>Documents required</h3>
+            <p>After you register, our team will request your VIN photo, driver's license, voided check, and vehicle photos via email to complete onboarding.</p>
+          </article>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <div data-site-footer></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/emailjs.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/registration.js"></script>
+</body>
+</html>
