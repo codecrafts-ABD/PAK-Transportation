@@ -148,3 +148,48 @@
     padding: 1.1rem;
   }
 }
+
+/* ── Carrier page responsive ──────────────────────────────────────── */
+
+@media (max-width: 1100px) {
+  .carrier-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .carrier-sidebar {
+    position: static;
+  }
+
+  .carrier-sidebar__facts {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .carrier-form-card__body {
+    padding: 1.4rem 1.1rem;
+  }
+
+  .carrier-form-footer {
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+
+  .carrier-submit-btn {
+    width: 100%;
+  }
+
+  .carrier-sidebar__facts {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .carrier-sidebar__facts {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .carrier-hero__pills {
+    gap: 0.5rem;
+  }
+}

@@ -116,7 +116,7 @@
           return;
         }
         sessionStorage.setItem("selectedLaneNumber", laneNumber);
-        window.location.href = `book-lane.html?lane=${encodeURIComponent(laneNumber)}`;
+        window.location.href = `book-lane.html?lane=${encodeURIComponent(laneNumber)}#booking-form`;
       });
     });
   }

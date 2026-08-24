@@ -27,12 +27,12 @@
           </p>
         </div>
         <div class="page-hero__panel" data-reveal>
-          <img src="https://images.unsplash.com/photo-1501700493788-fa1a4fc9fe62?auto=format&fit=crop&w=1200&q=80" alt="Truck on the road moving freight between cities" loading="lazy">
+          <img src="assets/images/image1.jpeg" alt="Truck on the road moving freight between cities" loading="lazy">
         </div>
       </div>
     </section>
 
-    <section class="section">
+    <section class="section" id="booking-form">
       <div class="container two-column">
         <div class="info-panel" data-reveal>
           <span class="section__eyebrow">Selected lane</span>
@@ -40,12 +40,40 @@
           <p class="section__lead" data-selected-route>
             Use the field below to manually enter or edit the lane number.
           </p>
-          <div class="trust-bar">
+
+          <!-- shown when a valid lane is matched -->
+          <div class="lane-detail-block" data-lane-details hidden>
+            <div class="lane-detail-grid">
+              <div class="lane-detail-item">
+                <span>Rate</span>
+                <strong data-detail-rate>—</strong>
+              </div>
+              <div class="lane-detail-item">
+                <span>Miles</span>
+                <strong data-detail-miles>—</strong>
+              </div>
+              <div class="lane-detail-item">
+                <span>Pickup</span>
+                <strong data-detail-pickup>—</strong>
+              </div>
+              <div class="lane-detail-item">
+                <span>Delivery</span>
+                <strong data-detail-delivery>—</strong>
+              </div>
+            </div>
+          </div>
+
+          <!-- shown when the typed lane number doesn't match any lane -->
+          <p class="lane-not-found" data-lane-not-found hidden>
+            Lane not found. Check the number or browse <a href="lanes.html">available lanes</a>.
+          </p>
+
+          <div class="trust-bar" style="margin-top: 1.2rem;">
             <span class="trust-pill">Fast response</span>
             <span class="trust-pill">Transparent follow-up</span>
             <span class="trust-pill">Dedicated dispatch support</span>
           </div>
-          <img class="feature-image" src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80" alt="Transportation dispatch office with workstations and monitors" loading="lazy" style="margin-top: 1.2rem;">
+          <!-- <img class="feature-image" src="assets/images/image4.jpeg" alt="Transportation dispatch office with workstations and monitors" loading="lazy" style="margin-top: 1.2rem;"> -->
         </div>
 
         <div class="form-panel" data-reveal>
