@@ -1,10 +1,18 @@
 (function () {
   const company = (window.PAK_TRANSPORTATION && window.PAK_TRANSPORTATION.company) || {
-    name: "Business Name",
-    phone: "(555) 014-2233",
-    email: "dispatch@businessname.com",
-    location: "Dallas, TX",
-    hours: "Mon - Fri, 7:00 AM - 7:00 PM",
+    name:        "Active Carriers Corporation",
+    shortName:   "Active Carriers",
+    usdot:       "3735366",
+    usdotStatus: "ACTIVE",
+    mc:          "MC-1434047",
+    phone:       "(408) 313-8667",
+    email:       "dispatch@activecarrierscorp.com",
+    address:     "10825 1st Street",
+    city:        "Gilroy",
+    state:       "CA",
+    zip:         "95020",
+    location:    "Gilroy, CA 95020",
+    hours:       "Mon - Fri, 7:00 AM - 7:00 PM",
   };
 
   const navItems = [
@@ -103,7 +111,9 @@
             <ul class="footer__contact">
               <li><span>Phone:</span> <a href="tel:${company.phone.replace(/[^+\d]/g, "")}">${company.phone}</a></li>
               <li><span>Email:</span> <a href="mailto:${company.email}">${company.email}</a></li>
-              <li><span>Location:</span> ${company.location}</li>
+              <li><span>Address:</span> ${company.address}, ${company.city}, ${company.state} ${company.zip}</li>
+              <li><span>USDOT:</span> ${company.usdot}</li>
+              <li><span>MC:</span> ${company.mc}</li>
             </ul>
           </div>
         </div>

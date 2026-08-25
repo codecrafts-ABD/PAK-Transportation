@@ -5,6 +5,7 @@
     state: "all",
     pickupDate: "",
     sort: "featured",
+    type: "all",
   };
 
   const currency = new Intl.NumberFormat("en-US", {
@@ -48,8 +49,9 @@
       lane.destinationState === data.state;
 
     const dateMatch = !data.pickupDate || lane.pickup === data.pickupDate;
+    const typeMatch  = data.type === "all" || lane.type === data.type;
 
-    return (!search || laneText.includes(search)) && stateMatch && dateMatch;
+    return (!search || laneText.includes(search)) && stateMatch && dateMatch && typeMatch;
   }
 
   function sortLanes(list) {
@@ -75,18 +77,84 @@
   }
 
   function renderLaneCard(lane) {
+    const isRoundTrip = lane.type === "round-trip";
+    const typeBadge = isRoundTrip
+      ? `<span class="lane-card__type lane-card__type--round">Round Trip</span>`
+      : `<span class="lane-card__type lane-card__type--one-way">One Way</span>`;
+
+    // Extra meta chips: DH, weight, pallets, pickup window
+    const extraMeta = [
+      lane.dh      != null ? `<div><span>DH</span><strong>${miles.format(lane.dh)} mi</strong></div>`        : "",
+      lane.weight           ? `<div><span>Weight</span><strong>${lane.weight.toLocaleString()} lbs</strong></div>` : "",
+      lane.pallets          ? `<div><span>Pallets</span><strong>${lane.pallets}</strong></div>`                : "",
+      lane.pickupWindow     ? `<div><span>PU Window</span><strong>${lane.pickupWindow}</strong></div>`        : "",
+    ].filter(Boolean).join("");
+
+    const originAddress = lane.originAddress
+      ? `<p class="lane-card__address">${lane.originAddress}</p>` : "";
+    const destAddress = lane.destinationAddress
+      ? `<p class="lane-card__address">${lane.destinationAddress}</p>` : "";
+
+    // Return-leg values — fall back to swapped origin/dest for dynamic lanes
+    const retFromCity  = lane.returnOriginCity  || lane.destinationCity;
+    const retFromState = lane.returnOriginState || lane.destinationState;
+    const retToCity    = lane.returnDestCity    || lane.originCity;
+    const retToState   = lane.returnDestState   || lane.originState;
+
+    const retExtraMeta = isRoundTrip ? [
+      lane.returnDH      != null ? `<div><span>DH</span><strong>${miles.format(lane.returnDH)} mi</strong></div>`         : "",
+      lane.returnWeight           ? `<div><span>Weight</span><strong>${lane.returnWeight.toLocaleString()} lbs</strong></div>` : "",
+      lane.returnPallets          ? `<div><span>Pallets</span><strong>${lane.returnPallets}</strong></div>`                : "",
+      lane.returnPickupWindow     ? `<div><span>PU Window</span><strong>${lane.returnPickupWindow}</strong></div>`         : "",
+    ].filter(Boolean).join("") : "";
+
+    const retAddrOrigin = lane.returnOriginAddress
+      ? `<p class="lane-card__address">${lane.returnOriginAddress}</p>` : "";
+    const retAddrDest = lane.returnDestAddress
+      ? `<p class="lane-card__address">${lane.returnDestAddress}</p>` : "";
+
+    const retRateLabel = lane.returnRate
+      ? `<strong class="lane-card__return-rate">${currency.format(lane.returnRate)}</strong>` : "";
+
+    const totalRate = isRoundTrip && lane.returnRate
+      ? `<span class="lane-card__total-rate">Total ${currency.format(lane.rate + lane.returnRate)}</span>` : "";
+
+    const returnLeg = isRoundTrip ? `
+      <div class="lane-card__return">
+        <span class="lane-card__return-label">Return leg ${retRateLabel}</span>
+        <div class="lane-card__return-route">
+          ${retFromCity}, ${retFromState} <span>→</span> ${retToCity}, ${retToState}
+        </div>
+        ${retAddrOrigin}${retAddrDest}
+        <div class="lane-card__meta lane-card__meta--return">
+          <div><span>Miles</span><strong>${lane.returnMiles ? miles.format(lane.returnMiles) + " mi" : "—"}</strong></div>
+          <div><span>Return Pickup</span><strong>${lane.returnPickup ? formatDate(lane.returnPickup) : "—"}</strong></div>
+          <div><span>Return Delivery</span><strong>${lane.returnDelivery ? formatDate(lane.returnDelivery) : "—"}</strong></div>
+          ${retExtraMeta}
+        </div>
+      </div>` : "";
+
     return `
-      <article class="lane-card" data-reveal>
+      <article class="lane-card${isRoundTrip ? " lane-card--round-trip" : ""}" data-reveal>
         <div class="lane-card__top">
           <span class="lane-card__badge">${lane.laneNumber}</span>
-          <span class="lane-card__rate">${currency.format(lane.rate)}</span>
+          <div class="lane-card__top-right">
+            ${typeBadge}
+            <div class="lane-card__rates">
+              <span class="lane-card__rate">${currency.format(lane.rate)}</span>
+              ${totalRate}
+            </div>
+          </div>
         </div>
         <h3 class="lane-card__route">${lane.originCity}, ${lane.originState} <span>→</span> ${lane.destinationCity}, ${lane.destinationState}</h3>
+        ${originAddress}${destAddress}
         <div class="lane-card__meta">
-          <div><span>Miles</span><strong>${miles.format(lane.miles)}</strong></div>
+          <div><span>Trip Miles</span><strong>${miles.format(lane.miles)} mi</strong></div>
           <div><span>Pickup</span><strong>${formatDate(lane.pickup)}</strong></div>
           <div><span>Delivery</span><strong>${formatDate(lane.delivery)}</strong></div>
+          ${extraMeta}
         </div>
+        ${returnLeg}
         <button class="button button--accent lane-card__button" type="button" data-book-lane="${lane.laneNumber}">
           Book This Lane
         </button>
@@ -165,10 +233,11 @@
   }
 
   function bindFilters() {
-    const search = document.querySelector("[data-search-filter]");
-    const state = document.querySelector("[data-state-filter]");
+    const search     = document.querySelector("[data-search-filter]");
+    const state      = document.querySelector("[data-state-filter]");
     const pickupDate = document.querySelector("[data-date-filter]");
-    const sort = document.querySelector("[data-sort-filter]");
+    const sort       = document.querySelector("[data-sort-filter]");
+    const type       = document.querySelector("[data-type-filter]");
     const sectionSummary = document.querySelector("[data-lane-section-summary]");
     const todayPlus2 = new Date();
     todayPlus2.setDate(todayPlus2.getDate() + 2);
@@ -199,6 +268,11 @@
       render();
     });
 
+    type?.addEventListener("change", (event) => {
+      data.type = event.target.value;
+      render();
+    });
+
     document.addEventListener("click", (event) => {
       const resetButton = event.target.closest("[data-reset-filters]");
       if (!resetButton) {
@@ -206,13 +280,15 @@
       }
 
       data.search = "";
-      data.state = "all";
+      data.state  = "all";
       data.pickupDate = "";
-      data.sort = "featured";
-      if (search) search.value = "";
-      if (state) state.value = "all";
+      data.sort   = "featured";
+      data.type   = "all";
+      if (search)     search.value     = "";
+      if (state)      state.value      = "all";
       if (pickupDate) pickupDate.value = "";
-      if (sort) sort.value = "featured";
+      if (sort)       sort.value       = "featured";
+      if (type)       type.value       = "all";
       render();
     });
 
