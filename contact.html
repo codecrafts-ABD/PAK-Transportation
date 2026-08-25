@@ -85,7 +85,7 @@
             <div class="contact-cta-card__icon">02</div>
             <h3>Carrier Onboarding</h3>
             <p>Register as a carrier and our team will reach out to collect your documents and get you set up on the network.</p>
-            <a class="button button--secondary" href="carrier.html">Register Now</a>
+            <a class="button button--accent" href="carrier.html">Register Now</a>
           </article>
           <article class="contact-cta-card contact-cta-card--call" data-reveal data-contact-cta-call>
             <!-- phone CTA populated by script -->
@@ -130,10 +130,10 @@
                   '<span>Phone</span>' +
                   '<strong><a href="tel:' + tel + '">' + (c.phone || "—") + '</a></strong>' +
                 '</div>' +
-                '<div class="contact-stat-divider"></div>' +
-                '<div class="contact-stat">' +
-                  '<span>Hours</span><strong>' + (c.hours || "—") + '</strong>' +
-                '</div>' +
+                // '<div class="contact-stat-divider"></div>' +
+                // '<div class="contact-stat">' +
+                //   '<span>Hours</span><strong>' + (c.hours || "—") + '</strong>' +
+                // '</div>' +
               '</div>' +
             '</div>';
         }
@@ -149,26 +149,20 @@
             '<ul class="contact-detail-list">' +
               '<li>' +
                 '<span class="contact-detail-list__label">Business</span>' +
-                '<strong class="contact-detail-list__value">' + (c.name || "—") + '</strong>' +
+                '<strong class="contact-detail-list__value" title="' + (c.name || "") + '">' + (c.name || "—") + '</strong>' +
               '</li>' +
               '<li>' +
                 '<span class="contact-detail-list__label">Phone</span>' +
-                '<strong class="contact-detail-list__value">' +
-                  '<a href="tel:' + tel + '">' + (c.phone || "—") + '</a>' +
-                '</strong>' +
+                '<strong class="contact-detail-list__value"><a href="tel:' + tel + '">' + (c.phone || "—") + '</a></strong>' +
               '</li>' +
               '<li>' +
                 '<span class="contact-detail-list__label">Email</span>' +
-                '<strong class="contact-detail-list__value">' +
-                  '<a href="mailto:' + (c.email || "") + '">' + (c.email || "—") + '</a>' +
-                '</strong>' +
-              '</li>' +
-              '<li>' +
-                '<span class="contact-detail-list__label">Hours</span>' +
-                '<strong class="contact-detail-list__value">' + (c.hours || "—") + '</strong>' +
+                '<strong class="contact-detail-list__value" title="' + (c.email || "") + '"><a href="mailto:' + (c.email || "") + '">' + (c.email || "—") + '</a></strong>' +
               '</li>' +
             '</ul>' +
-            '<a class="button button--accent contact-detail-card__cta" href="tel:' + tel + '">Call Now</a>';
+            '<div class="contact-detail-card__cta">' +
+              '<a class="button button--accent" href="tel:' + tel + '">Call Now</a>' +
+            '</div>';
         }
 
         // ── Authority card ────────────────────────────────────────────
@@ -193,8 +187,8 @@
                 '<strong>' + (c.mc || "—") + '</strong>' +
               '</li>' +
             '</ul>' +
-            '<div class="contact-auth-note">' +
-              '<p>Fully licensed and operating under active federal motor carrier authority.</p>' +
+            '<div class="contact-detail-card__cta">' +
+              '<a class="button button--accent" href="carrier.html">Register Now</a>' +
             '</div>';
         }
 
@@ -210,14 +204,16 @@
             '</div>' +
             '<div class="contact-location-block">' +
               '<div class="contact-location-pin">' +
-                '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>' +
+                '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>' +
               '</div>' +
               '<address class="contact-location-address">' +
                 (c.address || "") + '<br>' +
                 (c.city || "") + ', ' + (c.state || "") + ' ' + (c.zip || "") +
               '</address>' +
             '</div>' +
-            '<a class="button button--secondary contact-detail-card__cta" href="' + mapsUrl + '" target="_blank" rel="noopener">Open in Maps</a>';
+            '<div class="contact-detail-card__cta">' +
+              '<a class="button button--accent" href="' + mapsUrl + '" target="_blank" rel="noopener">Open in Maps</a>' +
+            '</div>';
         }
 
         // ── Call CTA card ─────────────────────────────────────────────
@@ -227,7 +223,7 @@
             '<div class="contact-cta-card__icon">03</div>' +
             '<h3>Call Dispatch</h3>' +
             '<p>Speak directly with our team during business hours for the fastest answer on freight availability and rates.</p>' +
-            '<a class="button button--secondary" href="tel:' + tel + '">' + (c.phone || "Call Us") + '</a>';
+            '<a class="button button--accent" href="tel:' + tel + '">' + (c.phone || "Call Us") + '</a>';
         }
       });
     })();
