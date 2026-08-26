@@ -196,7 +196,6 @@
         var locCard = document.querySelector("[data-contact-location-card]");
         if (locCard) {
           var fullAddress = (c.address || "") + ', ' + (c.city || "") + ', ' + (c.state || "") + ' ' + (c.zip || "");
-          var mapsUrl = "https://maps.google.com/?q=" + encodeURIComponent(fullAddress);
           locCard.innerHTML =
             '<div class="contact-detail-card__header">' +
               '<span class="contact-detail-card__eyebrow">Location</span>' +
@@ -212,7 +211,7 @@
               '</address>' +
             '</div>' +
             '<div class="contact-detail-card__cta">' +
-              '<a class="button button--accent" href="' + mapsUrl + '" target="_blank" rel="noopener">Open in Maps</a>' +
+              '<a class="button button--accent" href="carrier.html#registration-form">Register Now</a>' +
             '</div>';
         }
 
