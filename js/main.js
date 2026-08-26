@@ -121,8 +121,8 @@
         <div class="container footer__bottom">
           <p>© <span data-current-year></span> ${company.name}. All rights reserved.</p>
           <div class="footer__legal">
-            <a href="privacy.html">Privacy Policy</a>
-            <a href="terms.html">Terms of Service</a>
+            <a href="https://activecarrierscorporation.com/privacy.html">Privacy Policy</a>
+            <a href="https://activecarrierscorporation.com/terms.html">Terms of Service</a>
           </div>
         </div>
       </footer>
