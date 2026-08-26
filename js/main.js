@@ -6,7 +6,7 @@
     usdotStatus: "ACTIVE",
     mc:          "MC-1434047",
     phone:       "(408) 313-8667",
-    email:       "dispatch@activecarrierscorp.com",
+    email:       "team@activecarrierscorporation.com",
     address:     "10825 1st Street",
     city:        "Gilroy",
     state:       "CA",
